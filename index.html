@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="CSS/favicon1.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title>Binance Alerts</title>
+  </head>
+  <body>
+    <header>
+      <h4>Binance Alerts</h4>
+    </header>
+    <section class="AddAlert">
+      <div>
+        <label>Symbol</label>
+        <input
+          placeholder="Symbol"
+          id="symbol"
+          type="text"
+          oninput="this.value = this.value.toUpperCase();"
+        />
+      </div>
+      <div>
+        <label>Condition</label>
+        <select id="condition">
+          <option value="GE">Greater than or equal to</option>
+          <option value="LE">Less than or equal to</option>
+        </select>
+      </div>
+      <div>
+        <label>Price</label>
+        <input placeholder="Price" id="price" type="number" />
+      </div>
+      <div>
+        <label>Message</label>
+        <input placeholder="Message" id="message" type="text" />
+      </div>
+      <div>
+        <i id="addAlertBtn" class="fas fa-plus-circle btn-add"></i>
+      </div>
+    </section>
+    <table id="alerts">
+      <tbody id="alertsbody">
+        <tr>
+          <th>#</th>
+          <th>Symbol</th>
+          <th>Condition</th>
+          <th>Price</th>
+          <th>Current Price</th>
+          <th>Status</th>
+          <th>Action</th>
+          <th>Message</th>
+          <th>TV</th>
+        </tr>
+      </tbody>
+    </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+    <script src="JS/static.js"></script>
+    <script type="module" src="JS/index.js"></script>
+  </body>
+</html>
