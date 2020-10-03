@@ -13,36 +13,35 @@ const initialize = async () => {
 //Add event Listeners
 const klineEHandler = ({ symbol, close }) => {
   const currentPrice = parseFloat(close);
-  alerts
-    .filter((a) => a.symbol === symbol && a.status === 'PENDING')
-    .forEach((a, i) => {
-      document.getElementById(`${a.id}cp`).innerHTML = currentPrice;
-      //check if alert is triggered
-      const flag =
-        a.condition === 'GE'
-          ? currentPrice >= a.price
-            ? true
-            : false
-          : currentPrice <= a.price
+  alerts.forEach((a, i) => {
+    if (a.symbol !== symbol || a.status !== 'PENDING') return;
+    document.getElementById(`${a.id}cp`).innerHTML = currentPrice;
+    //check if alert is triggered
+    const flag =
+      a.condition === 'GE'
+        ? currentPrice >= a.price
           ? true
-          : false;
-      if (!flag) return;
-      alerts[i].status = 'CLOSED';
-      document.getElementById(
-        `${a.id}status`
-      ).innerHTML = `<span class="span-alert-closed">Closed</span>`;
-      const otheralerts = alerts.filter(
-        (d) => d.symbol === a.symbol && d.id !== a.id && d.status === 'PENDING'
-      ).length;
-      if (otheralerts) return;
-      klinews.unsubscribe({ symbol: a.symbol });
-      notify({
-        title: `${a.symbol} Price ${a.condition === 'GE' ? '>=' : '<='} ${
-          a.price
-        }`,
-        message: a.message,
-      }); //notify
-    });
+          : false
+        : currentPrice <= a.price
+        ? true
+        : false;
+    if (!flag) return;
+    alerts[i].status = 'CLOSED';
+    document.getElementById(
+      `${a.id}status`
+    ).innerHTML = `<span class="span-alert-closed">Closed</span>`;
+    const otheralerts = alerts.filter(
+      (d) => d.symbol === a.symbol && d.id !== a.id && d.status === 'PENDING'
+    ).length;
+    if (otheralerts) return;
+    klinews.unsubscribe({ symbol: a.symbol });
+    notify({
+      title: `${a.symbol} Price ${a.condition === 'GE' ? '>=' : '<='} ${
+        a.price
+      }`,
+      message: a.message,
+    }); //notify
+  });
 };
 
 const addAlertBtnFn = () => {
@@ -105,7 +104,7 @@ const deleteAlertFn = async (e) => {
       d.symbol === alert.symbol && d.id !== alert.id && d.status === 'PENDING'
   ).length;
   if (otheralerts) return;
-  klinews.unsubscribe({ symbol: a.symbol });
+  klinews.unsubscribe({ symbol: alert.symbol });
 };
 
 document.getElementById('addAlertBtn').addEventListener('click', addAlertBtnFn);
