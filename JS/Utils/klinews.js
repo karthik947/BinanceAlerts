@@ -60,9 +60,16 @@ let klinews = {
     const { e, s: symbol } = streamEvent;
     if (e != 'kline') return;
     const {
-      k: { c: close },
+      k: { t: ts, c: close, o: open, h: high, l: low },
     } = streamEvent;
-    klinews.eventEmitter.emit('PRICEUPDATES', { symbol, close });
+    klinews.eventEmitter.emit('PRICEUPDATES', {
+      ts,
+      symbol,
+      open,
+      high,
+      low,
+      close,
+    });
   },
   subscribe({ symbol }) {
     if (klinews.subsymbols.includes(symbol)) return;

@@ -25,10 +25,11 @@ header h4 {
 .AddAlert {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 1.2rem;
   margin-bottom: 3rem;
+  margin-left: 10rem;
 }
 
 .AddAlert > div {
@@ -56,7 +57,7 @@ header h4 {
 }
 
 #alerts {
-  margin: auto;
+  margin-left: 10rem;
   font-size: 1rem;
   border-spacing: 0px;
 }
@@ -71,6 +72,7 @@ header h4 {
 #alerts td {
   padding: 0.5rem 2rem;
   border-bottom: 1px solid #bbb;
+  text-align: center;
 }
 
 .btn-delete {
@@ -85,4 +87,29 @@ header h4 {
 .span-alert-closed {
   background: lawngreen;
   padding: 0 0.25rem;
+}
+
+.ChartFilter {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 5rem 10rem 0 10rem;
+}
+
+#chart {
+  width: 80vw;
+  /* margin-left: 10rem; */
+  /* margin-top: 2rem; */
+  margin: 2rem 10rem 0 10rem;
+}
+
+#tvchart {
+  width: 100%;
+  height: 40vh;
+}
+
+.HiddenFilter {
+  display: none;
 }
