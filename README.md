@@ -10,7 +10,8 @@ This tool allows you to set price alerts on Binance. It's a newer version of the
 
 ### How to run ?
 Due to github file size constraints (100Mb), I could only upload the code. So run the following commands to build the .exe file from the code.
-* Install Node JS [link](https://nodejs.org/en/)
+* Install Node JS [link](https://nodejs.org/en/).
+* `npm i electron-packager -g`
 * `npm install`
 * `electron-packager .`
  
